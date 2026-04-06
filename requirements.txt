@@ -1,0 +1,9 @@
+# Standard library only — no pip install required.
+# Python 3.10+ recommended (for X | Y union types and tuple[...] hints).
+#
+# Third-party:
+#   pandas — pip install pandas
+#     Used for reading/writing CSV progress files.
+#
+# tkinter ships with the standard Python installer.
+# Linux users: sudo apt install python3-tk
