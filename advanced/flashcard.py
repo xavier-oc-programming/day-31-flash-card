@@ -1,7 +1,6 @@
+import csv
 import random
 from pathlib import Path
-
-import pandas
 
 
 class FlashCard:
@@ -19,10 +18,12 @@ class FlashCard:
 
     def _load(self) -> list[dict]:
         try:
-            df = pandas.read_csv(self._saved_path)
+            path = self._saved_path
+            path.open()  # raises FileNotFoundError if missing
         except FileNotFoundError:
-            df = pandas.read_csv(self._orig_path)
-        return df.to_dict(orient="records")
+            path = self._orig_path
+        with path.open(newline="", encoding="utf-8") as f:
+            return list(csv.DictReader(f))
 
     def next_word(self) -> dict | None:
         """Return a random word dict, or None if the deck is exhausted."""
@@ -37,7 +38,10 @@ class FlashCard:
             self._words.remove(self._current)
         except ValueError:
             pass
-        pandas.DataFrame(self._words).to_csv(self._saved_path, index=False)
+        with self._saved_path.open("w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=["French", "English"])
+            writer.writeheader()
+            writer.writerows(self._words)
 
     @property
     def remaining(self) -> int:
