@@ -35,11 +35,13 @@ python original/main.py
 python advanced/main.py
 ```
 
-Install the one third-party dependency:
+The original build requires pandas:
 
 ```
 pip install pandas
 ```
+
+The advanced build uses only the standard library — no install needed.
 
 ---
 
@@ -60,6 +62,8 @@ pip install pandas
 | `config.py` — zero magic numbers | — | yes |
 | Callbacks injected via `__init__` | — | yes |
 | Logic / UI separation | — | yes |
+| pandas dependency | yes | — |
+| stdlib only (`csv` module) | — | yes |
 
 ---
 
@@ -179,7 +183,7 @@ day-31-flash-card/
 │
 ├── menu.py                  # Terminal menu: launch original or advanced build
 ├── art.py                   # LOGO constant, printed by menu.py
-├── requirements.txt         # pandas (third-party); tkinter ships with Python
+├── requirements.txt         # pandas required for original build only; advanced is stdlib-only
 ├── .gitignore
 ├── README.md
 │
@@ -334,6 +338,7 @@ Built as Day 31 of [100 Days of Code](https://www.udemy.com/course/100-days-of-c
 - Mutable one-element lists as closure cells
 - `sys.path.insert` for sibling-module imports
 - `subprocess.run` orchestration from a terminal menu
+- stdlib `csv` module instead of pandas for instant startup
 
 See [docs/COURSE_NOTES.md](docs/COURSE_NOTES.md) for the full concept breakdown.
 
@@ -343,8 +348,11 @@ See [docs/COURSE_NOTES.md](docs/COURSE_NOTES.md) for the full concept breakdown.
 
 | Module | Used in | Purpose |
 |---|---|---|
+| Module | Used in | Purpose |
+|---|---|---|
 | `tkinter` | `original/main.py`, `advanced/display.py` | GUI widgets and event loop |
-| `pandas` | `original/main.py`, `advanced/flashcard.py` | Read/write CSV word lists |
+| `pandas` | `original/main.py` | Read/write CSV word lists (third-party) |
+| `csv` | `advanced/flashcard.py` | Read/write CSV word lists (stdlib, no install) |
 | `random` | `original/main.py`, `advanced/flashcard.py` | Random word selection |
 | `pathlib` | `advanced/main.py`, `advanced/flashcard.py`, `advanced/display.py` | Cross-platform path handling |
 | `sys` | `advanced/display.py`, `advanced/main.py`, `menu.py` | `sys.exit`, `sys.executable`, `sys.path` |
