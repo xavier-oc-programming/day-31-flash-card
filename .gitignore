@@ -3,3 +3,4 @@
 .idea/
 .vscode/
 *.py[cod]
+**/words_to_learn.csv
