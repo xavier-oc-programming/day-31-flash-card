@@ -179,7 +179,7 @@ Invalid input → "Invalid choice. Try again." → menu re-renders
 ## 7. Architecture
 
 ```
-day-31-flash-card/
+flash-card-tkinter/
 │
 ├── menu.py                  # Terminal menu: launch original or advanced build
 ├── art.py                   # LOGO constant, printed by menu.py
@@ -188,7 +188,8 @@ day-31-flash-card/
 ├── README.md
 │
 ├── data/
-│   └── french_words.csv     # Full deck — 200 French/English word pairs
+│   ├── french_words.csv     # Full deck — 200 French/English word pairs
+│   └── words_to_learn.csv   # Runtime-generated progress file (gitignored)
 │
 ├── images/
 │   ├── card_front.png       # White card graphic
@@ -346,8 +347,6 @@ See [docs/COURSE_NOTES.md](docs/COURSE_NOTES.md) for the full concept breakdown.
 
 ## 13. Dependencies
 
-| Module | Used in | Purpose |
-|---|---|---|
 | Module | Used in | Purpose |
 |---|---|---|
 | `tkinter` | `original/main.py`, `advanced/display.py` | GUI widgets and event loop |
